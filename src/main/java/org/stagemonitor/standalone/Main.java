@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.stagemonitor.alerting.annotation.SLA;
 import org.stagemonitor.core.Stagemonitor;
 import org.stagemonitor.requestmonitor.MonitorRequests;
 
@@ -25,6 +26,7 @@ public class Main {
 	}
 
 	@MonitorRequests
+	@SLA(errorRateThreshold = 0, metric = SLA.Metric.P95, threshold = 500)
 	private void doBatchWork() {
 		System.out.println("doing batch work...");
 		try {
